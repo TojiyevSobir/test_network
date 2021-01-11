@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:test_network/models/Post.dart';
+import 'package:test_network/models/post.dart';
 
 
 class Network1 {
 
-  static String BASE = "dummy.restapiexample.com";
+  static String BASE = "dummy.restapiexample.com/api/v1/";
   static Map<String, String> headers = {
     "Content-type": "application/json;charset=utf-8",
   };
 
   //*Http Apis
-  static String API_LIST = "/api/v1/employees";
+  static String API_LIST = "/employees";
   static String API_LIST2 = "/employees";//{id}
   static String API_CREATE = "/create";
   static String API_UPDATE = "/update"; //{id}
@@ -21,7 +21,7 @@ class Network1 {
   static Future<String> GET(String api, Map<String, String> params) async {
     print("------->>>>>> 1");
     try{
-    var uri = Uri.http("dummy.restapiexample.com/api/v1/employees", api, params);
+    var uri = Uri.http(BASE, api, params);
 
     var response = await get(uri, headers: headers);
     if (response.statusCode == 200) {
